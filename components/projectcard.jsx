@@ -164,7 +164,7 @@ const ProjectCard = ({ title, description, image, link, linkType, index, isLeft,
         <div ref={glowRef} className="card-glow" />
         <div className="card-inner">
 
-          {award && !link && (
+          {award  && (
             <div className="award-badge">
               <FiAward size={16} />
               <span>{award}</span>
