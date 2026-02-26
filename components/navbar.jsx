@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +18,9 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'home', href: '#home' },
-    { name: 'projects', href: '#projects' },
-    { name: 'experiences', href: '#experiences' },
-    { name: 'blog', href: '#blog' },
+    { name: 'home', href: '/' },
+    { name: 'projects', href: '/projects' },
+    { name: 'experiences', href: '/experiences' },
   ];
 
   return (
@@ -57,7 +57,6 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setActiveSection(item.name)}
                 className="relative group px-4 py-2"
               >
                 {/* Bracket decorations */}
@@ -71,7 +70,7 @@ const Navbar = () => {
                 {/* Link text */}
                 <span
                   className={`font-mono text-sm tracking-wide transition-all duration-300 ${
-                    activeSection === item.name
+                    pathname === item.href
                       ? 'text-blue-400'
                       : 'text-slate-400 group-hover:text-slate-200'
                   }`}
@@ -82,7 +81,7 @@ const Navbar = () => {
                 {/* Underline animation */}
                 <span
                   className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 ${
-                    activeSection === item.name
+                    pathname === item.href
                       ? 'w-full'
                       : 'w-0 group-hover:w-full'
                   }`}

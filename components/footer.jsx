@@ -24,12 +24,11 @@ const Footer = () => {
   }, []);
 
   const contactInfo = {
-    email: 'your.email@example.com',
-    phone: '+1 (234) 567-8900',
-    location: 'San Francisco, CA'
+    email: 'vthanish25@gmail.com',
+    location: 'Cumming, GA'
   };
 
-  const motto = '"Code with passion, debug with patience."';
+  const motto = '"Every bug leads to better code."';
   
   const availability = 'Currently open to opportunities';
 
@@ -75,11 +74,6 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-purple-400">phone:</span>
-            <span>{contactInfo.phone}</span>
-          </div>
-
-          <div className="flex items-center gap-2">
             <span className="text-purple-400">location:</span>
             <span>{contactInfo.location}</span>
           </div>
@@ -93,30 +87,7 @@ const Footer = () => {
         </div>
         <div className="pl-4 text-yellow-300 italic">{motto}</div>
 
-        {/* Links */}
-        <div className="flex items-center mt-4 gap-2">
-          <span className="text-green-400">➜</span>
-          <span className="text-blue-400">~</span>
-          <span className="text-slate-400 ml-2">cat links.txt</span>
-        </div>
-        <div className="pl-4 space-y-1">
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-cyan-400 hover:text-cyan-300 block"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-cyan-400 hover:text-cyan-300 block"
-          >
-            LinkedIn
-          </a>
-        </div>
+        
       </div>
     </div>
 

@@ -114,9 +114,9 @@ export default function HeroSection() {
                   <svg className="w-24 h-24 mx-auto mb-4 text-purple-400/40" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                   </svg>
-                  <p className="text-purple-400/60 text-sm">Your Photo Here</p>
                 </div>
               </div>
+              <img src="/images/headshot.png" className="absolute inset-0 w-full h-full object-cover rounded-2xl"/>
             </div>
           </div>
         </div>

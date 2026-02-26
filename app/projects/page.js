@@ -1,232 +1,317 @@
-'use client';
-
-import Image from 'next/image';
-import { useState, useRef, useEffect } from 'react';
+"use client";
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import ProjectCard from '@/components/projectcard';
+import styles from './ProjectsCategorized.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Projects = () => {
-  const [hoveredProject, setHoveredProject] = useState(null);
+const ProjectsCategorized = () => {
+  const cursorRef = useRef(null);
   const timelineRef = useRef(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('All');
 
-  const projects = [
-    {
-      id: 1,
-      title: 'Cyberlearn',
-      description: 'Interactive cybersecurity education platform with gamified learning modules and real-time threat simulations',
-      type: 'demo',
-      link: 'https://demo.cyberlearn.com',
-      tags: ['React', 'Node.js', 'WebSockets'],
-      gradient: 'from-cyan-500 via-blue-600 to-purple-600',
-    },
-    {
-      id: 2,
-      title: 'Lunaguard',
-      description: 'AI-powered sleep tracking app with personalized recommendations and circadian rhythm analysis',
-      type: 'video',
-      link: 'https://youtube.com/lunaguard-demo',
-      tags: ['React Native', 'Python', 'ML'],
-      gradient: 'from-indigo-500 via-purple-600 to-pink-600',
-    },
-    {
-      id: 3,
-      title: 'Cryptography Toolkit',
-      description: 'Comprehensive suite of encryption algorithms with visual demonstrations and educational resources',
-      type: 'demo',
-      link: 'https://crypto-toolkit.app',
-      tags: ['TypeScript', 'WebCrypto', 'D3.js'],
-      gradient: 'from-emerald-500 via-teal-600 to-cyan-600',
-    },
-    {
-      id: 4,
-      title: 'Arkire Website',
-      description: 'Modern responsive portfolio site with dynamic content management and seamless animations',
-      type: 'demo',
-      link: 'https://arkire.dev',
-      tags: ['Next.js', 'Tailwind', 'GSAP'],
-      gradient: 'from-orange-500 via-red-600 to-pink-600',
-    },
-    {
-      id: 5,
-      title: 'Nutriscan',
-      description: 'Computer vision app for instant nutritional analysis from food photos with dietary recommendations',
-      type: 'award',
-      link: '#',
-      award: '🏆 Best Health App 2024',
-      tags: ['Flutter', 'TensorFlow', 'Firebase'],
-      gradient: 'from-lime-500 via-green-600 to-emerald-600',
-    },
-    {
-      id: 6,
-      title: 'Live Local',
-      description: 'Community-driven platform connecting locals with authentic experiences and hidden gems',
-      type: 'demo',
-      link: 'https://livelocal.app',
-      tags: ['React', 'MongoDB', 'Maps API'],
-      gradient: 'from-amber-500 via-orange-600 to-red-600',
-    },
-    {
-      id: 7,
-      title: 'KWK Project',
-      description: 'Educational mobile app empowering young women in tech through interactive coding challenges',
-      type: 'video',
-      link: 'https://youtube.com/kwk-demo',
-      tags: ['Swift', 'iOS', 'Firebase'],
-      gradient: 'from-pink-500 via-rose-600 to-red-600',
-    },
-    {
-      id: 8,
-      title: 'Find Your Future',
-      description: 'AI career guidance platform matching students with opportunities based on skills and interests',
-      type: 'demo',
-      link: 'https://findyourfuture.io',
-      tags: ['Vue.js', 'Python', 'PostgreSQL'],
-      gradient: 'from-violet-500 via-purple-600 to-fuchsia-600',
-    },
-    {
-      id: 9,
-      title: 'Aidmate',
-      description: 'Virtual medical assistant providing symptom analysis and connecting users with healthcare providers',
-      type: 'award',
-      link: '#',
-      award: '🏆 Healthcare Innovation Award',
-      tags: ['React Native', 'NLP', 'AWS'],
-      gradient: 'from-blue-500 via-cyan-600 to-teal-600',
-    },
-    {
-      id: 10,
-      title: 'AI Career Coach',
-      description: 'Personalized career development platform with AI-driven resume optimization and interview prep',
-      type: 'demo',
-      link: 'https://aicareercoach.com',
-      tags: ['Next.js', 'OpenAI', 'Supabase'],
-      gradient: 'from-sky-500 via-blue-600 to-indigo-600',
-    },
-    {
-      id: 11,
-      title: 'LockedIn',
-      description: 'Social productivity app with focus sessions, goal tracking, and accountability partnerships',
-      type: 'video',
-      link: 'https://youtube.com/lockedin-demo',
-      tags: ['React Native', 'Node.js', 'WebRTC'],
-      gradient: 'from-teal-500 via-emerald-600 to-green-600',
-    },
-    {
-      id: 12,
-      title: 'Chat App',
-      description: 'Real-time messaging platform with end-to-end encryption and rich media sharing',
-      type: 'demo',
-      link: 'https://chat.app',
-      tags: ['React', 'Socket.io', 'MongoDB'],
-      gradient: 'from-purple-500 via-violet-600 to-indigo-600',
-    },
-    {
-      id: 13,
-      title: 'Cascade',
-      description: 'Project management tool with kanban boards, time tracking, and team collaboration features',
-      type: 'demo',
-      link: 'https://cascade.pm',
-      tags: ['Angular', 'Express', 'MySQL'],
-      gradient: 'from-rose-500 via-pink-600 to-fuchsia-600',
-    },
-    {
-      id: 14,
-      title: 'Asteroid Dashboard',
-      description: 'Data visualization dashboard tracking near-Earth objects with real-time NASA API integration',
-      type: 'demo',
-      link: 'https://asteroid-dash.space',
-      tags: ['React', 'D3.js', 'NASA API'],
-      gradient: 'from-slate-500 via-gray-600 to-zinc-600',
-    },
-    {
-      id: 15,
-      title: 'Python Projects',
-      description: 'Collection of data science and automation scripts including web scrapers and ML models',
-      type: 'demo',
-      link: 'https://github.com/yourname/python-projects',
-      tags: ['Python', 'Pandas', 'Scikit-learn'],
-      gradient: 'from-yellow-500 via-amber-600 to-orange-600',
-    },
-    {
-      id: 16,
-      title: 'Scratch NASA App',
-      description: 'Educational space exploration game teaching orbital mechanics and mission planning',
-      type: 'award',
-      link: '#',
-      award: '🏆 Best Educational Game',
-      tags: ['Scratch', 'Game Design'],
-      gradient: 'from-red-500 via-orange-600 to-yellow-600',
-    },
-    {
-      id: 17,
-      title: 'Scratch App',
-      description: 'Interactive storytelling platform enabling kids to create and share animated adventures',
-      type: 'demo',
-      link: 'https://scratch.mit.edu/projects/yourproject',
-      tags: ['Scratch', 'Animation'],
-      gradient: 'from-green-500 via-lime-600 to-yellow-600',
-    },
-  ];
+  const categories = {
+    'Web Apps': [
+      {
+        title: 'Find Your Future',
+        description: 'AI-powered career and internship platform with job search, recruiter/admin portal, and AI chatbot guidance. National award-winning project built with React.js and Node.js.',
+        image: '/images/find-future.png',
+        link: 'https://youtu.be/Cy8G1WveIJY',
+        // Full-stack web app with AI chatbot
+        techStack: ['React', 'Node.js', 'Express', 'OpenAI API'],
+        award: 'FBLA National Award',
+      },
+      {
+        title: 'Arkire Website',
+        description: 'Responsive website designed with HTML/CSS and Figma, focused on visual storytelling and UX design principles.',
+        image: '/images/arkire.png',
+        link: 'https://www.arkirehq.com/',
+        // Design-led static site, no backend
+        techStack: ['HTML', 'CSS', 'JavaScript', 'Figma'],
+      },
+      {
+        title: 'Live Local',
+        description: 'Community-focused web platform connecting local events, volunteering opportunities, and student engagement initiatives.',
+        image: '/images/live-local.png',
+        link: 'https://youtu.be/eb5cBPb9fcQ',
+        // MERN stack
+        techStack: ['React', 'Node.js', 'Express', 'MongoDB'],
+      },
+      {
+        title: 'Asteroid Dashboard',
+        description: 'Interactive dashboard built with Python, Streamlit, Plotly, and ML models to visualize asteroid data. Developed at an international all-girls hackathon (Ascend, LA).',
+        image: '/images/asteroid.png',
+        link: 'https://asteroid-ascend.streamlit.app/',
+        // Pure Python data viz — Streamlit deploy confirms no JS frontend
+        techStack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
+      },
+      {
+        title: 'Nutriscan',
+        description: 'Nutrition tracking web app that analyzes food intake and suggests improvements using interactive charts and visualizations.',
+        image: '/images/nutriscan.png',
+        link: 'https://nutriscan-flax.vercel.app/',
+        // Vercel deploy = React frontend, charting library
+        techStack: ['React', 'JavaScript', 'Chart.js', 'CSS'],
+      },
+      {
+        title: 'Chat App',
+        description: 'Real-time messaging web application integrating React.js and Node.js with authentication and dynamic chat features.',
+        image: '/images/chat_app_1.png',
+        link: 'https://quickchatfrontend.vercel.app/',
+        // Real-time — Socket.io is the core technology
+        techStack: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
+      },
+      {
+        title: 'AI Career Coach',
+        description: 'Web-based AI assistant providing career guidance, resume tips, and learning path suggestions for high school students.',
+        image: '/images/ai-coach.png',
+        link: 'https://sensai-f3f2tclt7-vthani25s-projects.vercel.app/',
+        // Vercel deploy, AI-powered — Next.js is standard for this pattern
+        techStack: ['Next.js', 'OpenAI API', 'JavaScript', 'CSS'],
+      },
+      {
+        title: 'Tamil Learning',
+        description: 'Interactive web app for learning Tamil language fundamentals through structured lessons and exercises.',
+        image: '/images/tamil-learning.png',
+        link: 'https://tamil-learning.vercel.app/',
+        // Frontend only
+        techStack: ['React', 'JavaScript', 'CSS'],
+      },
+    ],
+    'Mobile Apps': [
+      {
+        title: 'Lunaguard',
+        description: 'Safety-focused app integrating AI threat detection, ML self-defense tutorials, silent evidence collection, and instant crisis support via Google Maps.',
+        image: '/images/lunaguard.jpg',
+        link: 'https://www.youtube.com/watch?app=desktop&v=lOvUDMHvn6c',
+        techStack: ['React Native', 'Firebase', 'Android Studio'],
+      },
+      {
+        title: 'LockedIn',
+        description: 'Productivity app built with MIT App Inventor featuring calendar management, group chat, and OpenAI-powered tools to boost focus.',
+        image: '/images/lockedin.png',
+        link: 'https://www.canva.com/design/DAGc-BQWORY/QTH1l7QZQIST1CEbNSZjcQ/view?utm_content=DAGc-BQWORY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdef5c23794',
+        techStack: ['MIT App Inventor', 'OpenAI API', 'Firebase'],
+        award: 'GA Tech Fair Winner',
+      },
+      {
+        title: 'AidMate',
+        description: 'React Native app that helps users with first-aid and emergency response. Includes ML symptom detection, CPR animations, multilingual support, and location sharing. National Technovation Semifinalist.',
+        image: '/images/aidmate.png',
+        link: 'https://snack.expo.dev/@vthani25/github.com-vthani25-technovation-girls_personal',
+        techStack: ['React Native', 'Expo'],
+        award: 'Technovation Semifinalist',
+      },
+    ],
+    'Security Projects': [
+      {
+        title: 'Cryptography Toolkit',
+        description: 'Interactive toolkit teaching hashing, encryption, and salting techniques. Published on FreeCodeCamp with 50k+ views. Includes step-by-step tutorials and example code.',
+        image: '/images/crypto-toolkit.png',
+        link: 'https://youtu.be/kb_scuDUHls?si=3wOLTeK0YkSQqpv-',
+        techStack: ['Python', 'YouTube'],
+      },
+      {
+        title: 'SecuriTV',
+        description: 'Educational platform combining cybersecurity concepts with live video lessons and interactive exercises. Helps beginners understand digital threats in a hands-on way.',
+        image: '/images/securitv.png',
+        link: 'https://vthani25.github.io/securitv/',
+        techStack: ['HTML', 'CSS', 'JavaScript'],
+      },
+      {
+        title: 'KWK Project',
+        description: 'A practical project focusing on implementing cryptography algorithms in Python, allowing users to experiment with real-world security techniques.',
+        image: '/images/kwk.png',
+        link: 'https://vthani25.github.io/kwk_cybersecurity',
+        techStack: ['Python', 'Tableau', 'HTML', 'CSS'],
+      },
+      {
+        title: 'Cyber Game (CyberLearn)',
+        description: 'Gamified cybersecurity experience teaching encryption, malware defense, and network security concepts. Recognized with a $1,500 award.',
+        image: '/images/cyberlearn.png',
+        techStack: ['Pygame', 'Tkinter'],
+        award: '$1,500 Award',
+      },
+    ],
+    'Creative Coding': [
+      {
+        title: 'Python ML',
+        description: 'A collection of Python projects experimenting with machine learning algorithms, including classification, prediction, and data visualization.',
+        image: '/images/python-ml.png',
+        link: 'https://colab.research.google.com/drive/1dk0i3AB6RTd4zBZFo_fy5AFW3Qj9b7Ln?usp=sharing',
+        techStack: ['Python', 'Pandas', 'Matplotlib'],
+      },
+      {
+        title: 'Scratch NASA App',
+        description: 'Interactive educational game introducing NASA missions, space exploration, and science concepts through Scratch programming.',
+        image: '/images/nasa-scratch.png',
+        link: 'https://scratch.mit.edu/projects/1075072242/',
+        techStack: ['Scratch'],
+      },
+      {
+        title: 'Scratch Games',
+        description: 'Beginner-friendly games created in Scratch to teach programming fundamentals and game design principles.',
+        image: '/images/scratch-games.png',
+        link: 'https://scratch.mit.edu/projects/401739781',
+        techStack: ['Scratch'],
+      },
+    ],
+  };
+
+  const getAllProjects = () => {
+    return Object.values(categories).flat();
+  };
+
+  const getDisplayProjects = () => {
+    if (activeCategory === 'All') {
+      return getAllProjects();
+    }
+    return categories[activeCategory] || [];
+  };
 
   useEffect(() => {
-    const cards = document.querySelectorAll('.project-card');
-    
-    cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        {
-          opacity: 0,
-          x: index % 2 === 0 ? -100 : 100,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            end: 'top 50%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const getLinkIcon = (type) => {
-    switch (type) {
-      case 'demo':
-        return '🚀';
-      case 'video':
-        return '🎥';
-      case 'award':
-        return '🏆';
-      default:
-        return '🔗';
-    }
-  };
+  useEffect(() => {
+    if (isMobile) return;
 
-  const getLinkText = (type) => {
-    switch (type) {
-      case 'demo':
-        return 'View Demo';
-      case 'video':
-        return 'Watch Video';
-      case 'award':
-        return 'View Award';
-      default:
-        return 'View Project';
+    const cursor = cursorRef.current;
+
+    const moveCursor = (e) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+    };
+
+    window.addEventListener('mousemove', moveCursor);
+
+    const interactiveElements = document.querySelectorAll('a, .project-card, .category-btn');
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', () => setIsHovering(true));
+      el.addEventListener('mouseleave', () => setIsHovering(false));
+    });
+
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+    };
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile) return;
+
+    if (isHovering) {
+      gsap.to(cursorRef.current, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+    } else {
+      gsap.to(cursorRef.current, {
+        scale: 0.8,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
     }
-  };
+  }, [isHovering, isMobile]);
+
+  useEffect(() => {
+    if (isMobile) return;
+
+    const timeline = timelineRef.current;
+    if (timeline) {
+      gsap.to(timeline, {
+        scrollTrigger: {
+          trigger: `.${styles.projectsTimeline}`,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          scrub: 1,
+        },
+        scaleY: 1,
+        ease: 'none',
+      });
+    }
+  }, [isMobile, activeCategory]);
+
+  const displayProjects = getDisplayProjects();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-20 px-4">
-      hi
+    <div className={styles.projectsPage}>
+      {!isMobile && (
+        <div ref={cursorRef} className={styles.customCursor} />
+      )}
+
+      <div className={styles.container}>
+        <header className={styles.pageHeader}>
+          <h1 className={styles.mainTitle}>
+            <span className={styles.titleAccent}>&lt;</span>
+            Projects
+            <span className={styles.titleAccent}>/&gt;</span>
+          </h1>
+          <p className={styles.subtitle}>A collection of work spanning cybersecurity, AI, web development, and more</p>
+
+          <div className={styles.categories}>
+            <button
+              className={`${styles.categoryBtn} ${activeCategory === 'All' ? styles.active : ''}`}
+              onClick={() => setActiveCategory('All')}
+            >
+              All Projects
+            </button>
+            {Object.keys(categories).map((category) => (
+              <button
+                key={category}
+                className={`${styles.categoryBtn} ${activeCategory === category ? styles.active : ''}`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </header>
+
+        <div className={styles.projectsTimeline}>
+          <div ref={timelineRef} className={styles.timelineLine} />
+
+          <div className={styles.projectsContainer}>
+            {displayProjects.map((project, index) => (
+              <ProjectCard
+                key={`${project.title}-${index}`}
+                {...project}
+                index={index}
+                isLeft={index % 2 === 0}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <style jsx global>{`
+        ::selection {
+          background: rgba(168, 85, 247, 0.3);
+          color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+          body {
+            cursor: auto !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
 
-export default Projects;
+export default ProjectsCategorized;

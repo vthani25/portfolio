@@ -15,9 +15,11 @@
     "@splinetool/runtime": "^1.12.57",
     "framer-motion": "^12.34.0",
     "gsap": "^3.14.2",
+    "lucide-react": "^0.564.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-icons": "^5.5.0",
     "three": "^0.182.0",
     "three-globe": "^2.45.0"
   },
