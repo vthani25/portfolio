@@ -20,7 +20,7 @@ const experiences = [
       "Co-founded Hack Forsyth with a GHP alum, and it became the county's largest — 100+ participants across 8 schools showing up to build something in a single day. I led the branding, ran the opening presentation, and designed and taught an applied machine learning workshop from scratch.",
       "Getting to watch students who've never shipped anything go from blank screen to working project in a few hours — that part never gets old.",
     ],
-    links: [{ label: 'Read the coverage →', href: 'YOUR_NEWS_LINK_HERE' }],
+    links: [{ label: 'Read the coverage →', href: 'https://www.forsythnews.com/news/education/over-100-high-schoolers-compete-in-inaugural-hackforsyth-coding-competition/' }],
     photos: [
       { src: '/images/hack_forsyth.jpeg', alt: 'Opening session' },
       { src: '/images/hack_forsyth1.jpeg', alt: 'Helping with Projects' },
@@ -42,7 +42,7 @@ const experiences = [
       "Co-founded Cascade through the All Girls Hackathon initiative and paired it with a Women in STEM networking dinner — because a competition alone isn't a community. I led the website and all the visual branding, and designed and taught web development workshops for participants.",
       "The room full of girls pitching projects they built themselves in a day made every late planning call worth it.",
     ],
-    links: [],
+    links: [{ label: 'View the website here →', href: 'https://cascade-9p82qmvwo-vthani25s-projects.vercel.app/' }],
     photos: [
       { src: '/images/cascade1.JPG', alt: 'Workshop Presentation' },
       { src: '/images/cascade2.JPG', alt: 'Helping with Workshop' },
@@ -64,7 +64,7 @@ const experiences = [
       "Covered real stuff: encryption, threat detection, digital safety — hands-on, not lecture-style. I designed the slides and curriculum myself, because there's a big difference between a slide deck that teaches and one that just talks at people.",
       "It's one thing to know how to do something. Teaching it is a whole different skill.",
     ],
-    links: [{ label: 'View the workshop slides →', href: 'YOUR_SLIDES_LINK_HERE' }],
+    links: [{ label: 'View the workshop slides →', href: 'https://www.canva.com/design/DAGuYLhGUYo/YQAtV3NuO7GxcNFTtuvqHA/view?utm_content=DAGuYLhGUYo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hceaf5c738f' }],
     photos: [],
   },
   {
@@ -79,7 +79,7 @@ const experiences = [
       "Beyond writing, I evaluate 300+ submissions per cycle, help organize the awards, and lead outreach to grow participation. There's something satisfying about crafting a problem that's genuinely hard but fair, where the aha-moment is built right into the structure.",
       "Good problems don't just test knowledge. They change how you think.",
     ],
-    links: [{ label: "See last year's problem set →", href: 'YOUR_MA4G_LINK_HERE' }],
+    links: [{ label: "See last year's problem set →", href: 'https://www.mathandai4girls.org/_files/ugd/2d4825_f8046bb8ca8548beb955af81e57600e3.pdf' }],
     photos: [],
   },
   {
