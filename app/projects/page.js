@@ -48,6 +48,7 @@ const ProjectsCategorized = () => {
         link: 'https://asteroid-ascend.streamlit.app/',
         // Pure Python data viz — Streamlit deploy confirms no JS frontend
         techStack: ['Python', 'Streamlit', 'Plotly', 'Pandas'],
+        award: 'National Hackathon',
       },
       {
         title: 'Nutriscan',
@@ -77,7 +78,7 @@ const ProjectsCategorized = () => {
         title: 'Tamil Learning',
         description: 'Interactive web app for learning Tamil language fundamentals through structured lessons and exercises.',
         image: '/images/tamil-learning.png',
-        link: 'https://tamil-learning.vercel.app/',
+        link: 'https://tamil-learning.vercel.app/choose',
         // Frontend only
         techStack: ['React', 'JavaScript', 'CSS'],
       },
@@ -158,6 +159,7 @@ const ProjectsCategorized = () => {
         image: '/images/scratch-games.png',
         link: 'https://scratch.mit.edu/projects/401739781',
         techStack: ['Scratch'],
+        award: 'GA Tech Fair Winner',
       },
     ],
   };
