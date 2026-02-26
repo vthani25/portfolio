@@ -11,7 +11,6 @@ const RING_PROPAGATION_SPEED = 3;
 const aspect = 1.2;
 const cameraZ = 300;
 
-// Simplified country data - the globe will work without it
 const countries = {
   features: []
 };
@@ -23,7 +22,7 @@ export function Globe({ globeConfig, data }) {
   const globeRef = useRef(null);
 
   const defaultProps = {
-    pointSize: 1,
+    pointSize: 0.5,
     atmosphereColor: "#ffffff",
     showAtmosphere: true,
     atmosphereAltitude: 0.1,
@@ -32,7 +31,7 @@ export function Globe({ globeConfig, data }) {
     emissive: "#000000",
     emissiveIntensity: 0.1,
     shininess: 0.9,
-    arcTime: 2000,
+    arcTime: 1000,
     arcLength: 0.9,
     rings: 1,
     maxRings: 3,

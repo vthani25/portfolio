@@ -270,7 +270,7 @@ const ProjectCard = ({ title, description, image, link, linkType, index, isLeft,
           align-items: center;
           gap: 6px;
           padding: 6px 12px;
-          background: rgba(255,200,0,0.12);
+          background: rgba(106, 83, 0, 0.31);
           border: 1px solid rgba(255,200,0,0.3);
           border-radius: 6px;
           color: #ffb800;
