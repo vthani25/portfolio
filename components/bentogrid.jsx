@@ -293,10 +293,10 @@ const BentoGrid = () => {
                 lineHeight: 1.1,
                 fontFamily: sans,
               }}>
-                This portfolio
+                SecuriTV
               </h3>
               <p style={{ fontSize: 13, color: "#444462", margin: 0, lineHeight: 1.7, fontFamily: sans }}>
-                Next.js · GSAP · Spline · Always iterating
+                Next.js · GSAP · Cybersecurity · Always iterating
               </p>
             </div>
           </a>

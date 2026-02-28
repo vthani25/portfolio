@@ -65,7 +65,6 @@ export default function Home() {
         id="home"
         className="relative w-full h-screen overflow-hidden mt-0"
       >
-        {/* Static dark background so there's never a white flash */}
         <div
           style={{
             position: 'absolute',

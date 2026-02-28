@@ -20,7 +20,7 @@ const ProjectsCategorized = () => {
         title: 'Find Your Future',
         description: 'AI-powered career and internship platform with job search, recruiter/admin portal, and AI chatbot guidance. National award-winning project built with React.js and Node.js.',
         image: '/images/find-future.png',
-        link: 'https://youtu.be/Cy8G1WveIJY',
+        link: 'https://youtu.be/ZLWb4x3aGJg',
         // Full-stack web app with AI chatbot
         techStack: ['React', 'Node.js', 'Express', 'OpenAI API'],
         award: 'FBLA National Award',

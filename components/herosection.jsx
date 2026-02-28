@@ -93,7 +93,7 @@ export default function HeroSection() {
               <span ref={cursorRef} className="text-purple-300">|</span>
             </div>
             <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-              Computer science student and technical leader. Software dev, hackathon organizer, and advocate for girls in computing.
+              Computer science student and technical leader. Web and mobile developer, hackathon organizer, and advocate for girls in computing.
             </p>
           </div>
 
