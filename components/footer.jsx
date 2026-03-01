@@ -102,7 +102,7 @@ const Footer = () => {
       {/* Right */}
       <div className="flex gap-6">
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/vthani25"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-slate-300 transition-colors"
@@ -111,7 +111,7 @@ const Footer = () => {
         </a>
 
         <a
-          href="https://linkedin.com/in/yourusername"
+          href="https://www.linkedin.com/in/vthanishkka/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-slate-300 transition-colors"

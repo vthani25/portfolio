@@ -74,14 +74,14 @@ const ProjectsCategorized = () => {
         // Vercel deploy, AI-powered — Next.js is standard for this pattern
         techStack: ['Next.js', 'OpenAI API', 'JavaScript', 'CSS'],
       },
-      {
-        title: 'Tamil Learning',
-        description: 'Interactive web app for learning Tamil language fundamentals through structured lessons and exercises.',
-        image: '/images/tamil-learning.png',
-        link: 'https://tamil-learning.vercel.app/choose',
-        // Frontend only
-        techStack: ['React', 'JavaScript', 'CSS'],
-      },
+      // {
+      //   title: 'Tamil Learning',
+      //   description: 'Interactive web app for learning Tamil language fundamentals through structured lessons and exercises.',
+      //   image: '/images/tamil-learning.png',
+      //   link: 'https://tamil-learning.vercel.app/choose',
+      //   // Frontend only
+      //   techStack: ['React', 'JavaScript', 'CSS'],
+      // },
     ],
     'Mobile Apps': [
       {
@@ -95,7 +95,6 @@ const ProjectsCategorized = () => {
         title: 'LockedIn',
         description: 'Productivity app built with MIT App Inventor featuring calendar management, group chat, and OpenAI-powered tools to boost focus.',
         image: '/images/lockedin.png',
-        link: 'https://www.canva.com/design/DAGc-BQWORY/QTH1l7QZQIST1CEbNSZjcQ/view?utm_content=DAGc-BQWORY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdef5c23794',
         techStack: ['MIT App Inventor', 'OpenAI API', 'Firebase'],
         award: 'GA Tech Fair Winner',
       },
